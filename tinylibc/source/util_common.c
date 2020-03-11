@@ -5,6 +5,10 @@
  * Common function handling codes.
 */
 
+#include <syscall_common.h>
+#include <syscall_vfs.h>
+#include <util_common.h>
+
 size_t strlen(const char *string) {
 
     int i=0;

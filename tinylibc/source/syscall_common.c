@@ -6,7 +6,7 @@
 */
 
 #include <internal.h>
-#include <sys/syscall.h> /* For system call numbers */
+#include <syscall_common.h>
 
 inline void exit(int status) {
     SYSCALL_1(SYS_exit, status);

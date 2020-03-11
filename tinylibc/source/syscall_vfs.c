@@ -6,9 +6,9 @@
 */
 
 #include <internal.h>
-#include <sys/syscall.h> /* For system call numbers */
+#include <syscall_vfs.h>
 
-inline int open(const char *pathname, int flags) {
+int open(const char *pathname, int flags) {
     return SYSCALL_2(SYS_open, pathname, flags);
 }
 
@@ -20,6 +20,6 @@ ssize_t write(int fd, const void *buf, size_t count) {
     return SYSCALL_3(SYS_write, fd, buf ,count);
 }
 
-inline int close(int fd) {
+int close(int fd) {
     return SYSCALL_1(SYS_close, fd);
 }

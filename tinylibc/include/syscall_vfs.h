@@ -5,7 +5,15 @@
  * VFS system call handling codes.
 */
 
-inline int open(const char *pathname, int flags);
-ssize_t read(int fd, void *buf, size_t count);
-ssize_t write(int fd, const void *buf, size_t count);
-inline int close(int fd);
+#ifndef _SYSCALL_VFS_H_
+#define _SYSCALL_VFS_H_
+
+#include <sys/syscall.h> /* For system call numbers */
+#include <sys/types.h>   /* For types */
+
+extern int open(const char *pathname, int flags);
+extern ssize_t read(int fd, void *buf, size_t count);
+extern ssize_t write(int fd, const void *buf, size_t count);
+extern int close(int fd);
+
+#endif
