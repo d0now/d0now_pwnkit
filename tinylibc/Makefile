@@ -4,6 +4,7 @@
 
 ARCH 	= x86
 CC      = gcc
+AR 		= ar
 CFLAGS  = -w -fno-stack-protector -nostdlib -nostartfiles -nostdinc -fPIC
 LFLAGS  = -w -fno-stack-protector -nostdlib -nostartfiles -nostdinc -fPIC -shared
 INC_DIR = include
@@ -16,16 +17,20 @@ OBJS += $(SRC_DIR)/syscall_vfs.o
 OBJS += $(SRC_DIR)/util_common.o
 OBJS += $(ARCH_OBJS)
 
-TARGET = libtiny.so
+DYNAMIC_TARGET = libtiny.so
+STATIC_TARGET = libtiny.a
 
 ifeq ($(ARCH), x86)
 	CFLAGS += -m32
 	LFLAGS += -m32
 endif
 
-libc: $(TARGET)
+libc: $(DYNAMIC_TARGET)
 
-$(TARGET): $(OBJS)
+$(STATIC_TARGET): $(OBJS)
+	$(AR) rscf $(STATIC_TARGET) $(OBJS)
+
+$(DYNAMIC_TARGET): $(OBJS)
 	$(CC) $(LFLAGS) -I$(INC_DIR) -I$(INC_DIR)/dummy -o $(TARGET) $(OBJS)
 
 $(OBJS):
