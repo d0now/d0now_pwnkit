@@ -25,7 +25,7 @@ ifeq ($(ARCH), x86)
 	LFLAGS += -m32
 endif
 
-libc: $(DYNAMIC_TARGET)
+libc: $(STATIC_TARGET)
 
 $(STATIC_TARGET): $(OBJS)
 	$(AR) rscf $(STATIC_TARGET) $(OBJS)
