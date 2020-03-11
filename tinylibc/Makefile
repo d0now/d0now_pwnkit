@@ -1,6 +1,14 @@
+#------------------------------------------------------------------------------#
+# tinylibc makefile
 #
-# Makefile
-#
+# Build targets
+# - libtiny.so -> Build dynamic shared library
+# - libtiny.a  -> Build static library
+#------------------------------------------------------------------------------#
+
+###
+# Variables
+###
 
 ARCH 	= x86
 CC      = gcc
@@ -20,12 +28,20 @@ OBJS += $(ARCH_OBJS)
 DYNAMIC_TARGET = libtiny.so
 STATIC_TARGET = libtiny.a
 
+###
+# Configurations
+###
+
 ifeq ($(ARCH), x86)
 	CFLAGS += -m32
 	LFLAGS += -m32
 endif
 
-libc: $(STATIC_TARGET)
+###
+# Build targets
+###
+
+all: $(STATIC_TARGET)
 
 $(STATIC_TARGET): $(OBJS)
 	$(AR) rscf $(STATIC_TARGET) $(OBJS)
