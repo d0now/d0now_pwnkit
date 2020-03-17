@@ -5,7 +5,6 @@
  * VFS system call handling codes.
 */
 
-#include <internal.h>
 #include <syscall_vfs.h>
 
 int open(const char *pathname, int flags) {
