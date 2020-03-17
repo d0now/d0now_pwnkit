@@ -23,3 +23,7 @@ ssize_t write(int fd, const void *buf, size_t count) {
 int close(int fd) {
     return SYSCALL_1(SYS_close, fd);
 }
+
+inline int fcntl(unsigned int fd, unsigned int cmd, unsigned long arg) {
+    return (int)SYSCALL_3(SYS_fcntl, fd, cmd, arg);
+}

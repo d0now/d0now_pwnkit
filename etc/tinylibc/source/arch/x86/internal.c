@@ -7,6 +7,8 @@
 
 #include <internal.h>
 
+#ifdef CONFIG_X86
+
 long __syscall_internal(scnum __number,
                         scarg a1, scarg a2, scarg a3, scarg a4, scarg a5) {
 
@@ -26,3 +28,5 @@ long __syscall_internal(scnum __number,
 
     return ret;
 }
+
+#endif

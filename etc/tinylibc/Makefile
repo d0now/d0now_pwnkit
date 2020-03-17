@@ -33,8 +33,13 @@ STATIC_TARGET = libtiny.a
 ###
 
 ifeq ($(ARCH), x86)
-	CFLAGS += -m32
+	CFLAGS += -m32 -D CONFIG_X86
 	LFLAGS += -m32
+endif
+
+ifeq ($(ARCH), x64)
+	CFLAGS += -D CONFIG_X64
+	LFLAGS += 
 endif
 
 ###
